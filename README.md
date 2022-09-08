@@ -70,7 +70,7 @@ python train.py \
 ## Evaluating
 Currently, you can predict:
 1. A CSV file with molecules in SMILES format --outputs--> molecular (property prediction/aleatoric/epistemic/total uncertainty)
-2. A CSV file with molecules in SMILES format --outputs--> svg. images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atom.
+2. A CSV file with molecules in SMILES format --outputs--> svg. images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atoms.
 
 ### 1. Run:
 ```
@@ -100,6 +100,9 @@ e.g.
    // ale
    // epi
 svg. images of (pred/ale/epi) will be saved in the directory
+
+![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC.jpeg)
+
 
 ## Post-hoc recalibration
 
