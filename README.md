@@ -101,7 +101,7 @@ e.g.
    // epi
 svg. images of (pred/ale/epi) will be saved in the directory
 
-![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC.jpeg)
+![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC2.jpeg)
 
 
 ## Post-hoc recalibration
