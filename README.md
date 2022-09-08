@@ -31,6 +31,7 @@ python train.py \
 --ensemble_size 15
 ```
 `<training_data_path>` is the CSV file with columns name at the first row
+
 e.g.
 | smiles  | logP  |
 | :---:   | :---: |
@@ -39,6 +40,7 @@ e.g.
 | ... | ... |
 
 `<save_path>` is the path to save the checkpoints.
+
 `--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
 
