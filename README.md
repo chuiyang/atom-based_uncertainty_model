@@ -34,7 +34,7 @@ python train.py \
 e.g.
 | smiles  | logP  |
 | :---:   | :---: |
-| CC[C@H](NC(C)=O)C(=O)NCC1(NC(=O)Cc2nonc2C)CC1 | -0.4   | 
+| COCC(=O)N(C)CC(=O)NCC1(Nc2nccn3nnnc23)CC1 | -1.315   | 
 | CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1 | 2.432   | 
 | ... | ... |
 
