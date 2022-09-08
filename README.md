@@ -36,15 +36,10 @@ smiles,logP
 CCN(CCSC)C(=O)N[C@@](C)(CC)C(F)(F)F,3.112
 CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1,2.432
 
-| Attempt | #1    |
+| smiles  | logP  |
 | :---:   | :---: |
-| Seconds | 301   | 
-
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| CCN(CCSC)C(=O)N[C@@](C)(CC)C(F)(F)F | 3.112   | 
+| CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1 | 2.432   | 
 
 
 `<save_path>` is the path to save the checkpoints.
