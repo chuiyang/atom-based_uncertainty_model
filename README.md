@@ -103,7 +103,7 @@ Three SVG images are generated per molecule, including property prediction, alea
 
 These SVG images will be classified into the folders they belong to. (e.g. aleatoric uncertainty with atomic aleatoric uncertainty image is in `ale` folder)
 
-![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/image2.jpeg)
+![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/image.jpeg)
 
 ## Post-hoc recalibration
 
