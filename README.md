@@ -93,12 +93,19 @@ python predict_atomicunc_multiMol.py \
 --estimate_variance 
 ```
 * by running predict_atomicunc_multiMol.py, a folder named by the CSV file name of `<eval_path>` will be created. The svg. images of molecules will be saved in the folder.
+
 e.g.
+
 `<eval_path>` == './molecule/test_data.csv'
+
 /test_data
+
    // pred
+   
    // ale
+   
    // epi
+   
 svg. images of (pred/ale/epi) will be saved in the directory
 
 ![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC2.jpeg)
