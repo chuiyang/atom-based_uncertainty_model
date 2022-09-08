@@ -67,3 +67,37 @@ python train.py \
 
 ## Evaluating
 
+## Post-hoc recalibration
+
+To fine-tune the variance layer in either atom- or molecule-based uncertainty model, run train_multimodel.py and add `--transfer_learning_freeze_GCNN`.
+In the following, the ensemble model before post-hoc calibration is named as "ens_model" and the ensemble model after post-hoc calibration is named as "post-hoc_ens_model".
+
+e.g.
+```
+python train_multimodel.py \
+--data_path <training_data_path> \
+--separate_val_path <val_data_path> \
+--separate_test_path <test_data_path> \
+--checkpoint_dir <ens_model_checkpoint_directory> \
+--save_dir <post-hoc_ens_model_checkpoint_directory> \
+--transfer_learning_freeze_GCNN \
+--fp_method molecular \
+--init_lr 1e-6 \
+--max_lr 1e-5 \
+--final_lr 8e-7 \
+--warmup_epochs 4 \
+--dataset_type regression \
+--epochs 150 \
+--no_features_scaling \
+--seed 20 \
+--aleatoric \
+--metric heteroscedastic \
+--aggregation sum \
+--ensemble_size 30 \
+--y_scaling \
+```
+`<training_data_path>`, `<val_data_path>`, and `<test_data_path>` are the CSV file paths of training/validation/testing data that used in ens_model.
+`<ens_model_checkpoint_directory>` is the path to the saved checkpoint of the ens_model.
+`<post-hoc_ens_model_checkpoint_directory>` is the path to save the checkpoints of post-hoc_ens_model.
+`--transfer_learning_freeze_GCNN` is to freeze the weights that do not belongs in **variance layer**.
+
