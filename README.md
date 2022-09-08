@@ -1,5 +1,7 @@
 # Atom-Based Uncertainty Model for Molecular Property Prediction
 
+![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC.jpeg)
+
 The atom-based uncertainty model is modified from the architecture of the molecule-based uncertainty model: https://github.com/gscalia/chemprop/tree/uncertainty
 
 
