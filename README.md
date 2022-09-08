@@ -11,7 +11,7 @@ Currently support regression task only.
 
 ## Training
 ### Train **atom-based uncertainty model** by running:
-```
+```bash
 python train.py \
 --data_path <training_data_path> \
 --save_dir <save_path> \
@@ -44,7 +44,7 @@ e.g.
 e.g. the maximum number of atoms in a molecule is 9.
 
 ### Train **molecule-based uncertainty model** by running:
-```
+```bash
 python train.py \
 --data_path <training_data_path> \
 --save_dir <save_path> \
@@ -69,10 +69,11 @@ python train.py \
 ## Post-hoc recalibration
 
 To fine-tune the variance layer in either atom- or molecule-based uncertainty model, run train_multimodel.py and add `--transfer_learning_freeze_GCNN`.
+
 In the following, the ensemble model before post-hoc calibration is named as "ens_model" and the ensemble model after post-hoc calibration is named as "post-hoc_ens_model".
 
-e.g.
-```
+### Train the pos-hoc recalibration on ens_model by running:
+```bash
 python train_multimodel.py \
 --data_path <training_data_path> \
 --separate_val_path <val_data_path> \
