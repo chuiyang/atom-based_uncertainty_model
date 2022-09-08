@@ -17,14 +17,14 @@ python train.py \
 --data_path <training_data_path> \
 --save_dir <save_path> \
 --max_atom_size 9 \
+--fp_method atomic \
+--corr_similarity_function pearson \
 --dataset_type regression \
 --epochs 150 \
 --no_features_scaling \
 --seed 20 \
 --aleatoric \
 --metric heteroscedastic \
---fp_method atomic \
---corr_similarity_function pearson \
 --y_scaling \
 --batch_size 50 \
 --save_smiles_splits \
@@ -43,6 +43,7 @@ e.g.
 * `<save_path>` is the path to save the checkpoints.
 * `--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
+* `--fp_method` should be specified as `atomic` for atomic predictive distributions.
 
 ### Train **molecule-based uncertainty model** by running:
 ```bash
@@ -50,12 +51,12 @@ python train.py \
 --data_path <training_data_path> \
 --save_dir <save_path> \
 --dataset_type regression \
+--fp_method molecular \
 --epochs 150 \
 --no_features_scaling \
 --seed 20 \
 --aleatoric \
 --metric heteroscedastic \
---fp_method molecular \
 --aggregation sum \
 --y_scaling \
 --batch_size 50 \
@@ -64,6 +65,7 @@ python train.py \
 --max_lr 5e-4 
 ```
 * `<training_data_path>` and `<save_path>` is the same as the above, and there is no need to specify the largest size of molecule in the training data when training a molecule-based uncertainty model 
+* `--fp_method` should be specified as `molecular` for only generating molecular predictive distribution.
 
 ## Evaluating
 Currently, you can predict:
