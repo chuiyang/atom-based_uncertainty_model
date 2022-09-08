@@ -67,6 +67,38 @@ python train.py \
 * `<training_data_path>` and `<save_path>` is the same as the above, and there is no need to specify the largest size of molecule in the training data when training a molecule-based uncertainty model 
 
 ## Evaluating
+Currently, you can predict:
+1. A CSV file with molecules in SMILES format --outputs--> molecular (property prediction/aleatoric/epistemic/total uncertainty)
+2. A CSV file with molecules in SMILES format --outputs--> svg. images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atom.
+
+### 1. Run:
+```
+python predict.py \
+--test_path <eval_path> \
+--checkpoint_dir <model_path> \
+--preds_path <pred_path> \
+--estimate_variance 
+```
+* `<eval_path>` is the CSV file path to evaluate
+* `<model_path>` is the checkpoint path where the model is saved. It should be the `<save_path>` when you train the model.
+* `<pred_path>` is the path to save the output file after predicting the `<eval_path>`
+
+### 2. Run:
+```
+python predict_atomicunc_multiMol.py \
+--test_path <eval_path> \
+--checkpoint_dir <model_path> \
+--preds_path <pred_path> \
+--estimate_variance 
+```
+* by running predict_atomicunc_multiMol.py, a folder named by the CSV file name of `<eval_path>` will be created. The svg. images of molecules will be saved in the folder.
+e.g.
+`<eval_path>` == './molecule/test_data.csv'
+/test_data
+   // pred
+   // ale
+   // epi
+svg. images of (pred/ale/epi) will be saved in the directory
 
 ## Post-hoc recalibration
 
