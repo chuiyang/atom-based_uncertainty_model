@@ -35,6 +35,13 @@ e.g.
 smiles,logP
 CCN(CCSC)C(=O)N[C@@](C)(CC)C(F)(F)F,3.112
 CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1,2.432
+
+| Attempt | #1    | #2    |
+| :---:   | :---: | :---: |
+| Seconds | 301   | 283   |
+| Attempt | #1    | #2    |
+| :---:   | :---: | :---: |
+| Seconds | 301   | 283   |
 `<save_path>` is the path to save the checkpoints.
 `--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
