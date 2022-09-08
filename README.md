@@ -10,7 +10,7 @@ Currently support regression task only.
 
 
 ## Training
-* You can train atom-based uncertainty model by:
+* You can train **atom-based uncertainty model** by running:
 ```
 python train.py \
 --data_path <training_data_path> \
@@ -33,16 +33,13 @@ python train.py \
 `<training_data_path>` is the CSV file with columns name at the first row
 e.g.
 smiles,logP
-
 CCN(CCSC)C(=O)N[C@@](C)(CC)C(F)(F)F,3.112
-
 CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1,2.432
-
 `<save_path>` is the path to save the checkpoints.
 `--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
 
-* You can train molecule-based uncertainty model by:
+* You can train **molecule-based uncertainty model** by running:
 ```
 python train.py \
 --data_path <training_data_path> \
