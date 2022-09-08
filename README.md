@@ -70,7 +70,7 @@ python train.py \
 ## Evaluating
 Currently, you can predict:
 1. A CSV file with molecules in SMILES format --outputs--> molecular (property prediction/aleatoric/epistemic/total uncertainty)
-2. A CSV file with molecules in SMILES format --outputs--> svg. images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atoms.
+2. A CSV file with molecules in SMILES format --outputs--> SVG images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atoms.
 
 ### 1. Run:
 ```
@@ -95,20 +95,14 @@ python predict_atomicunc_multiMol.py \
 * by running predict_atomicunc_multiMol.py, a folder named by the CSV file name of `<eval_path>` will be created. The svg. images of molecules will be saved in the folder.
 
 e.g.
-
 `<eval_path>` == './molecule/test_data.csv'
 
-/test_data
+A folder named `test_data` contains `pred`, `ale`, and `epi` folders.
 
-   // pred
-   
-   // ale
-   
-   // epi
-   
-svg. images of (pred/ale/epi) will be saved in the directory
+Three SVG images are generated per molecule, including property prediction, aleatoric uncertainty, and epistemic uncertainty.
 
-![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC2.jpeg)
+These SVG images will be classified into the folders they belong to. (e.g. aleatoric uncertainty with atomic aleatoric uncertainty image is in `ale` folder)
+
 
 
 ## Post-hoc recalibration
