@@ -90,7 +90,8 @@ python predict_atomicunc_multiMol.py \
 --test_path <eval_path> \
 --checkpoint_dir <model_path> \
 --preds_path <pred_path> \
---estimate_variance 
+--estimate_variance \
+--pred_max_atom_size 1
 ```
 * by running predict_atomicunc_multiMol.py, a folder named by the CSV file name of `<eval_path>` will be created. The svg. images of molecules will be saved in the folder.
 
