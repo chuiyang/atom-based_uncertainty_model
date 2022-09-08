@@ -1,4 +1,4 @@
-# Atom-Based Uncertainty Model for Molecular Property Prediction
+# Atom-Based Uncertainty Model
 
 ![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TOC.jpeg)
 
