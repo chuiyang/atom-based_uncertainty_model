@@ -10,7 +10,7 @@ Currently support regression task only.
 
 
 ## Training
-* You can train **atom-based uncertainty model** by running:
+### Train **atom-based uncertainty model** by running:
 ```
 python train.py \
 --data_path <training_data_path> \
@@ -44,7 +44,7 @@ e.g.
 `--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
 
-* You can train **molecule-based uncertainty model** by running:
+### Train **molecule-based uncertainty model** by running:
 ```
 python train.py \
 --data_path <training_data_path> \
