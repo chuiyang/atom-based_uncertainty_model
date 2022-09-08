@@ -133,7 +133,7 @@ python train_multimodel.py \
 --metric heteroscedastic \
 --aggregation sum \
 --ensemble_size 30 \
---y_scaling \
+--y_scaling 
 ```
 * `<training_data_path>`, `<val_data_path>`, and `<test_data_path>` are the CSV file paths of training/validation/testing data that used in ens_model.
 * `<ens_model_checkpoint_directory>` is the path to the saved checkpoint of the ens_model.
