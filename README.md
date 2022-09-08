@@ -5,6 +5,8 @@ The atom-based uncertainty model is modified from the architecture of the molecu
 
 The atom-based uncertainty quantification method provides an extra layer of explainability to both aleatoric and epistemic uncertainties, i.e., one can analyze individual atomic uncertainty values to diagnose the chemical component that introduces the uncertainty in the prediction.
 
+![image] (https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/TableOfContentsGraph.001.jpeg)
+
 Note:
 Currently support regression task only.
 
