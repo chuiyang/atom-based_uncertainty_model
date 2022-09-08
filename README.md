@@ -1,4 +1,4 @@
-# atom-based_uncertainty_model
+# Atom-Based Uncertainty Model for Molecular Property Prediction
 
 The atom-based uncertainty model is based on the molecule-based uncertainty model from: https://github.com/gscalia/chemprop/tree/uncertainty
 
