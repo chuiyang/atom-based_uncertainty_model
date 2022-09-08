@@ -30,7 +30,7 @@ python train.py \
 --max_lr 5e-4 \
 --ensemble_size 15
 ```
-`<training_data_path>` is the CSV file with columns name at the first row
+*`<training_data_path>` is the CSV file with columns name at the first row
 
 e.g.
 | smiles  | logP  |
@@ -39,9 +39,8 @@ e.g.
 | CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1 | 2.432   | 
 | ... | ... |
 
-`<save_path>` is the path to save the checkpoints.
-
-`--max_atom_size` is to specify the largest size of molecule in the training data.
+*`<save_path>` is the path to save the checkpoints.
+*`--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
 
 ### Train **molecule-based uncertainty model** by running:
@@ -63,7 +62,7 @@ python train.py \
 --ensemble_size 30 \
 --max_lr 5e-4 
 ```
-`<training_data_path>` and `<save_path>` is the same as the above, and no need to specify the largest size of molecule in the training data when training a molecule-based uncertainty model 
+*`<training_data_path>` and `<save_path>` is the same as the above, and there is no need to specify the largest size of molecule in the training data when training a molecule-based uncertainty model 
 
 ## Evaluating
 
@@ -96,8 +95,8 @@ python train_multimodel.py \
 --ensemble_size 30 \
 --y_scaling \
 ```
-`<training_data_path>`, `<val_data_path>`, and `<test_data_path>` are the CSV file paths of training/validation/testing data that used in ens_model.
-`<ens_model_checkpoint_directory>` is the path to the saved checkpoint of the ens_model.
-`<post-hoc_ens_model_checkpoint_directory>` is the path to save the checkpoints of post-hoc_ens_model.
-`--transfer_learning_freeze_GCNN` is to freeze the weights that do not belongs in **variance layer**.
+*`<training_data_path>`, `<val_data_path>`, and `<test_data_path>` are the CSV file paths of training/validation/testing data that used in ens_model.
+*`<ens_model_checkpoint_directory>` is the path to the saved checkpoint of the ens_model.
+*`<post-hoc_ens_model_checkpoint_directory>` is the path to save the checkpoints of post-hoc_ens_model.
+*`--transfer_learning_freeze_GCNN` is to freeze the weights that do not belongs in **variance layer**.
 
