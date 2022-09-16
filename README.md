@@ -4,11 +4,13 @@
 
 The atom-based uncertainty quantification method provides an extra layer of explainability to both aleatoric and epistemic uncertainties, i.e., one can analyze individual atomic uncertainty values to diagnose the chemical component that introduces the uncertainty in the prediction.
 
+Detailed content is available at Chemrxiv: doi.org/10.26434/chemrxiv-2022-qt49t
 
 The atom-based uncertainty model is modified from the architecture of the molecule-based uncertainty model: https://github.com/gscalia/chemprop/tree/uncertainty
 
 Note:
 Currently only **regression tasks** are supported.
+This repository is still under development. (16.09.2022)
 
 ## Training
 ### Train **atom-based uncertainty model** by running:
