@@ -17,13 +17,7 @@ Currently only **regression tasks** are supported.
 This repository is still under development. (19.12.2022)
 
 ## Computational Cost
-The computational cost depends on **the size of the training set** and **the number of epochs the machine runs**.
-
-We give the user a little idea of how long it takes to train the model.
-
-The times shown below are for training an atom-based uncertainty model.
-
-(If you want 5 models to form an ensemble model, 5 times the time needs to be considered if you do not perform parallel processing during training.)
+The computational cost depends on **the size of the training set** and **the number of epochs the machine runs**.<br />We give the user a little idea of how long it takes to train the model.<br />The times shown below are for training an atom-based uncertainty model.<br />(If you want 5 models to form an ensemble model, 5 times the time needs to be considered if you do not perform parallel processing during training.)
 
 For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test to 8:1:1. We set the 150 epochs with early stopping if no improvement in 50 epochs.
 |    Epochs it runs    | Time |
