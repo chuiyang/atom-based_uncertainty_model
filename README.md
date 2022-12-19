@@ -19,8 +19,8 @@ This repository is still under development. (19.12.2022)
 ## Computational Cost
 The computational cost depends on **the size of the training set** and **the number of epochs the machine runs**.<br />We give the user a little idea of how long it takes to train the model.<br />The times shown below are for training an atom-based uncertainty model.<br />(If you want 5 models to form an ensemble model, 5 times the time needs to be considered if you do not perform parallel processing during training.)
 
-For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test to 8:1:1. We set the 150 epochs with early stopping if no improvement in 50 epochs.
-|    Epochs it runs    | Time |
+For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 50 epochs.
+|    Epochs it ran    | Time |
 | ------------- | ------------- |
 | 60  | 2 mins 33 secs |
 | 65  | 2 mins 37 secs |
@@ -28,12 +28,12 @@ For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test 
 | 88  | 3 mins 44 secs |
 | 101 | 6 mins 08 sces |
 
-For **QM9**, the size of dataset is 134k molecules. We split train:val:test to 8:1:1. We set the 150 epochs with early stopping if no improvement in 15 epochs.
-|    Epochs it runs    | Time |
+For **QM9**, the size of dataset is 134k molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 15 epochs.
+|    Epochs it ran    | Time |
 | ------------- | ------------- |
 | 36  | 141 mins  |
 | 70  | 258 mins  |
-| 114 | 337 mins  |
+| 116 | 424 mins  |
 
 All timings were performed on 4 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
 
