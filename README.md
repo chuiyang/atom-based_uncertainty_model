@@ -37,6 +37,7 @@ For **QM9**, the size of dataset is 134k molecules. We split train:val:test into
 | 94  | 352 mins  |
 | 114 | 411 mins  |
 | 116 | 424 mins  |
+| 130 | 472 mins  |
 
 All timings above were performed on 4 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
 
@@ -53,12 +54,11 @@ For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test 
 For **QM9**, the size of dataset is 134k molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 15 epochs.
 |    Epochs it ran    | Time |
 | ------------- | ------------- |
-|   |  mins  |
-|   |  mins  |
-|   |  mins  |
-|   |  mins  |
-|  |  mins  |
-|  |  mins  |
+| 31  | 117 mins  |
+| 36  | 134 mins  |
+| 61  | 211 mins  |
+| 85  | 286 mins  |
+| 108 | 366 mins  |
 
 All timings above were performed on 8 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
 
