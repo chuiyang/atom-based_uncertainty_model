@@ -58,6 +58,10 @@ def add_predict_args(parser: ArgumentParser):
                         help='path to save covariance matrix of a molecule.')
     parser.add_argument('--pred_max_atom_size', type=int, default=None,
                         help='Maximum atomic number in a molecule')
+    
+    # predict molecules by drawing aleatoric/epistemic uncertainties and predictions into pictures.
+    parser.add_argument('--draw_mols_dir', type=str, default=None,
+                        help='The directory to save molecules pictures.')
 
 def add_train_args(parser: ArgumentParser):
     """
@@ -86,7 +90,7 @@ def add_train_args(parser: ArgumentParser):
                         help='Path to features to use in FNN (instead of features_generator)')                   
     parser.add_argument('--save_dir', type=str, default=None,
                         help='Directory where model checkpoints will be saved')
-    parser.add_argument('--save_smiles_splits', action='store_true', default=False,
+    parser.add_argument('--save_smiles_splits', action='store_true', default=True,
                         help='Save smiles for each train/val/test splits for prediction convenience later')
     parser.add_argument('--checkpoint_dir', type=str, default=None,
                         help='Directory from which to load model checkpoints'
@@ -152,7 +156,7 @@ def add_train_args(parser: ArgumentParser):
                         help='Write down the given true value in second column')
 
     # Training arguments
-    parser.add_argument('--epochs', type=int, default=30,
+    parser.add_argument('--epochs', type=int, default=150,
                         help='Number of epochs to run')
     parser.add_argument('--batch_size', type=int, default=50,
                         help='Batch size')
@@ -234,16 +238,16 @@ def add_train_args(parser: ArgumentParser):
                         help='fingerprint method, molecular/atomic/hybrid_dim0/hybrid_dim1.')
     parser.add_argument('--max_atom_size', type=int, default=None,
                         help='Maximum atomic number in a molecule')
-    parser.add_argument('--corr_similarity_function', type=str, default='rbf',
-                        help='choose between "rbf" kernel or "cos" similarity to calculate similarity of atomic fingerprint')
+    parser.add_argument('--corr_similarity_function', type=str, default='pearson',
+                        help='choose between "pearson", "cos", or "rbf" kernel similarity to calculate similarity of atomic fingerprint')
     parser.add_argument('--aggregation', type=str, default='mean',
                         help='aggregation scheme for atomic vectors into molecular vectors.(mean/sum/norm)')
     parser.add_argument('--aggregation_norm', type=int, default=100,
                         help='for norm aggregation, number by which to divide summed up atomic features.')
     parser.add_argument('--twoUnitOutput', action='store_true', default=False,
                         help='whether outputs of mean and variance share the same layer with 2 units.')
-    parser.add_argument('--y_scaling', action='store_true', default=False,
-                        help='devide y value with standard deviation of training data y.')
+    parser.add_argument('--y_scaling', action='store_true', default=True,
+                        help='divide y value with standard deviation of training data y.')
     parser.add_argument('--early_stopping_metric', type=str, default='heteroscedastic',
                         help='Early stopping criteria. e.g., stop when MAE of validation stop decreasing.')
     parser.add_argument('--early_stopping', type=int, default=15,
@@ -288,7 +292,7 @@ def modify_predict_args(args: Namespace):
     :param args: Arguments.
     """
     assert args.test_path
-    assert args.preds_path
+    assert args.draw_mols_dir
     assert args.checkpoint_dir is not None or args.checkpoint_path is not None or args.checkpoint_paths is not None
 
     update_checkpoint_args(args)
@@ -297,7 +301,7 @@ def modify_predict_args(args: Namespace):
     del args.no_cuda
 
     # Create directory for preds path
-    makedirs(args.preds_path, isfile=True)
+    makedirs(args.draw_mols_dir, isfile=True)
     
     # predict covariance matrix of a molecule.
     if args.covariance_matrix_pred:

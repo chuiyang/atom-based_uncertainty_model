@@ -99,7 +99,7 @@ python predict.py \
 python predict_atomicunc_multiMol.py \
 --test_path <eval_path> \
 --checkpoint_dir <model_path> \
---preds_mols_dir <pred_dir_path> \
+--draw_mols_dir <pred_dir_path> \
 --estimate_variance \
 --pred_max_atom_size 9
 ```
