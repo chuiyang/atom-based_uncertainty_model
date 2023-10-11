@@ -50,7 +50,7 @@ e.g.
 | CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1 | 2.432   | 
 | ... | ... |
 
-* `<save_dir_path>` is the path to save the checkpoints. e.g., 👉 /result/folder1
+* `<save_dir_path>` is the path to save the checkpoints. e.g., 👉 ./result/folder1
 * `--max_atom_size` is to specify the largest size of molecule in the training data.
 e.g. the maximum number of atoms in a molecule is 9.
 * `--fp_method` should be specified as `atomic` for atomic predictive distributions. (default: atomic)
@@ -83,19 +83,19 @@ Currently, you can predict:
 2. A CSV file with molecules in SMILES format --outputs--> SVG images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atoms.
 
 ### 1. Run:
-```
+```bash
 python predict.py \
 --test_path <eval_path> \
 --checkpoint_dir <model_dir_path> \
 --preds_path <pred_path> \
 --estimate_variance 
 ```
-* `<eval_path>` is the CSV file path to evaluate. e.g., 👉 /data/test_data.csv
+* `<eval_path>` is the CSV file path to evaluate. e.g., 👉 ./data/test_data.csv
 * `<model_dir_path>` is the checkpoint directory path where the model is saved. It should be same as the `<save_dir_path>` when you train the model.
-* `<pred_path>` is the path to save the output file after predicting the `<eval_path>`e.g., 👉 /data/test_data_pred.csv
+* `<pred_path>` is the path to save the output file after predicting the `<eval_path>`e.g., 👉 ./data/test_data_pred.csv
 
 ### 2. Run:
-```
+```bash
 python predict_atomicunc_multiMol.py \
 --test_path <eval_path> \
 --checkpoint_dir <model_path> \
