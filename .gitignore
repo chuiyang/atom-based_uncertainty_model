@@ -1,4 +1,9 @@
-*.*
 /data
+/model
+
+.DS_Store
+*.pyc
+
+!/images
 !*.py
 !.gitignore
