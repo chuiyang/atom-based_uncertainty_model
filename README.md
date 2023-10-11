@@ -16,52 +16,6 @@ Note:
 Currently only **regression tasks** are supported.
 This repository is still under development. (19.12.2022)
 
-## Computational Cost
-The computational cost depends on **the size of the training set** and **the number of epochs the machine runs**.<br />We give the user an idea of how long it takes to train the model.<br />The times shown below are for training an atom-based uncertainty model.<br />(If you want 5 models to form an ensemble model, 5 times the time needs to be considered if you do not perform parallel processing during training.)
-
-For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 50 epochs.
-|    Epochs it ran    | Time |
-| ------------- | ------------- |
-| 60  | 2 mins 33 secs |
-| 65  | 2 mins 37 secs |
-| 69  | 2 mins 55 secs |
-| 88  | 3 mins 44 secs |
-| 101 | 6 mins 08 sces |
-
-For **QM9**, the size of dataset is 134k molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 15 epochs.
-|    Epochs it ran    | Time |
-| ------------- | ------------- |
-| 36  | 141 mins  |
-| 70  | 258 mins  |
-| 90  | 330 mins  |
-| 94  | 352 mins  |
-| 114 | 411 mins  |
-| 116 | 424 mins  |
-| 130 | 472 mins  |
-
-All timings above were performed on 4 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
-
-
-For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 50 epochs.
-|    Epochs it ran    | Time |
-| ------------- | ------------- |
-| 74  | 2 mins 47 secs |
-| 81  | 3 mins 07 secs |
-| 78  | 3 mins 01 secs |
-| 79  | 3 mins 04 secs |
-| 104 | 3 mins 57 sces |
-
-For **QM9**, the size of dataset is 134k molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 15 epochs.
-|    Epochs it ran    | Time |
-| ------------- | ------------- |
-| 31  | 117 mins  |
-| 36  | 134 mins  |
-| 61  | 211 mins  |
-| 85  | 286 mins  |
-| 108 | 366 mins  |
-
-All timings above were performed on 8 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
-
 ## Training
 ### Train **atom-based uncertainty model** by running:
 ```bash
@@ -193,3 +147,48 @@ python train_multimodel.py \
 * `<post-hoc_ens_model_checkpoint_directory>` is the path to save the checkpoints of post-hoc_ens_model.
 * `--transfer_learning_freeze_GCNN` is to freeze the weights that do not belongs in **variance layer**.
 
+## Computational Cost
+The computational cost depends on **the size of the training set** and **the number of epochs the machine runs**.<br />We give the user an idea of how long it takes to train the model.<br />The times shown below are for training an atom-based uncertainty model.<br />(If you want 5 models to form an ensemble model, 5 times the time needs to be considered if you do not perform parallel processing during training.)
+
+For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 50 epochs.
+|    Epochs it ran    | Time |
+| ------------- | ------------- |
+| 60  | 2 mins 33 secs |
+| 65  | 2 mins 37 secs |
+| 69  | 2 mins 55 secs |
+| 88  | 3 mins 44 secs |
+| 101 | 6 mins 08 sces |
+
+For **QM9**, the size of dataset is 134k molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 15 epochs.
+|    Epochs it ran    | Time |
+| ------------- | ------------- |
+| 36  | 141 mins  |
+| 70  | 258 mins  |
+| 90  | 330 mins  |
+| 94  | 352 mins  |
+| 114 | 411 mins  |
+| 116 | 424 mins  |
+| 130 | 472 mins  |
+
+All timings above were performed on 4 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
+
+
+For **Delaney**, the size of dataset is 1128 molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 50 epochs.
+|    Epochs it ran    | Time |
+| ------------- | ------------- |
+| 74  | 2 mins 47 secs |
+| 81  | 3 mins 07 secs |
+| 78  | 3 mins 01 secs |
+| 79  | 3 mins 04 secs |
+| 104 | 3 mins 57 sces |
+
+For **QM9**, the size of dataset is 134k molecules. We split train:val:test into 8:1:1, set the 150 epochs, and stop early if there is no improvement in 15 epochs.
+|    Epochs it ran    | Time |
+| ------------- | ------------- |
+| 31  | 117 mins  |
+| 36  | 134 mins  |
+| 61  | 211 mins  |
+| 85  | 286 mins  |
+| 108 | 366 mins  |
+
+All timings above were performed on 8 cores of a 2.0GHz AMD EPYC Rome 64-core processor machine.
