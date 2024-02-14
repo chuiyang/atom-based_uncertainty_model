@@ -124,7 +124,7 @@ Three PNG/SVG images will be generated per molecule, including property predicti
 These PNG/SVG images will be classified into the folders they belong to. (e.g. aleatoric uncertainty with atomic aleatoric uncertainty image is in `ale` folder)
 * `--high_resolution` add this tag will generate images with svg format. Else, images with png format.
 
-![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/images/image.jpeg)
+![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/images/draw_predicted_molecule_images.png)
 
 ## Post-hoc recalibration
 
