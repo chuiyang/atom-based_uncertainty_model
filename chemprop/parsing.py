@@ -56,12 +56,13 @@ def add_predict_args(parser: ArgumentParser):
                         help='prediction one molecular uncertainty covariance only')
     parser.add_argument('--covariance_matrix_save_path', default=None,
                         help='path to save covariance matrix of a molecule.')
-    parser.add_argument('--pred_max_atom_size', type=int, default=None,
-                        help='Maximum atomic number in a molecule')
     
-    # predict molecules by drawing aleatoric/epistemic uncertainties and predictions into pictures.
+    # predict molecules by drawing aleatoric/epistemic uncertainties and predictions into images.
     parser.add_argument('--draw_mols_dir', type=str, default=None,
-                        help='The directory to save molecules pictures.')
+                        help='The directory to save molecules images.')
+    
+    parser.add_argument('--high_resolution', action='store_true', default=False,
+                        help='If true, save images in svg file (higher resolution comparing to png file).')
 
 def add_train_args(parser: ArgumentParser):
     """

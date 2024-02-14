@@ -14,10 +14,18 @@ The atom-based uncertainty model is modified from the architecture of a [molecul
 
 > **Note**:
 Currently only **regression tasks** are supported.
-This repository is still under development. (11.10.2023) \
+This repository is still under development. (14.02.2024) \
 I'll try to deliver this repo biweekly, hopefully~ :)
 
-## Training
+## Table of Contents
+- [Train](#train)
+- [Evaluate](#evaluate)
+  - [Molecular Property Prediction](#1-molecular-property-prediction)
+  - [Draw Molecular Images](#2-draw-molecular-images)
+- [Post-hoc recalibration](#post-hoc-recalibration)
+
+
+## Train
 ### Train **atom-based uncertainty model** by running:
 ```bash
 python train.py \
@@ -77,45 +85,44 @@ python train.py \
 * `<training_data_path>` and `<save_dir_path>` is the same as the above, and there is no need to specify the largest size of molecule in the training data when training a molecule-based uncertainty model 
 * `--fp_method` should be specified as `molecular` for only generating molecular predictive distribution.
 
-## Evaluating
+## Evaluate
 Currently, you can predict:
-1. A CSV file with molecules in SMILES format --outputs--> molecular (property prediction/aleatoric/epistemic/total uncertainty)
-2. A CSV file with molecules in SMILES format --outputs--> SVG images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atoms.
+1. **Input**: A CSV file with molecules in SMILES format \
+**Output**: Molecular (property/aleatoric uncertainty/epistemic uncertainty) predictions. (CSV file)
 
-### 1. Run:
+2. **Input**: A CSV file with molecules in SMILES format \
+**Output**: PNG/SVG images of molecules with atomic (contribution/aleatoric/epistemic) labeled near the atoms. (a folder with PNG/SVG files)
+
+### 1. Molecular Property Prediction 
+Run:
 ```bash
 python predict.py \
---test_path <eval_path> \
+--test_path <test_path> \
 --checkpoint_dir <model_dir_path> \
 --preds_path <pred_path> \
 --estimate_variance 
 ```
-* `<eval_path>` is the CSV file path to evaluate. e.g., 👉 ./data/test_data.csv
-* `<model_dir_path>` is the checkpoint directory path where the model is saved. It should be same as the `<save_dir_path>` when you train the model.
-* `<pred_path>` is the path to save the output file after predicting the `<eval_path>`e.g., 👉 ./data/test_data_pred.csv
+* `<test_path>` is the CSV file path to evaluate. e.g., 👉 ./data/test_data.csv
+* `<model_dir_path>` is the checkpoint directory path where the model is saved. It should be same as the `<save_dir_path>` when you train the model. e.g., 👉 ./result/folder1
+* `<pred_path>` is the CSV file path to save the output file after predicting the `<test_path>`e.g., 👉 ./data/test_data_pred.csv
 
-### 2. Run:
+### 2. Draw Molecular Images
+with atomic information \
+Run:
 ```bash
-python predict_atomicunc_multiMol.py \
---test_path <eval_path> \
---checkpoint_dir <model_path> \
+python draw_predicted_molecules.py \
+--test_path <test_path> \
+--checkpoint_dir <model_dir_path> \
 --draw_mols_dir <pred_dir_path> \
---estimate_variance \
---pred_max_atom_size 9
+--high_resolution
 ```
-* by running predict_atomicunc_multiMol.py, a folder named by the CSV file name of `<eval_path>` will be created. The svg. images of molecules will be saved in the folder.
-
-e.g., \
-`<eval_path>` 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-👉 ./molecule/test_data.csv \
-`<pred_dir_path>` 👉 ./molecule/test_data_folder
-
-A folder named `test_data` contains `pred`, `ale`, and `epi` folders.
-
-Three SVG images are generated per molecule, including property prediction, aleatoric uncertainty, and epistemic uncertainty.
-
-These SVG images will be classified into the folders they belong to. (e.g. aleatoric uncertainty with atomic aleatoric uncertainty image is in `ale` folder)
+* `<test_path>` is the CSV file path to evaluate. e.g., 👉 ./data/test_data.csv
+* `<model_dir_path>` is the checkpoint directory path where the model is saved. It should be same as the `<save_dir_path>` when you train the model. e.g., 👉 ./result/folder1
+* `<pred_dir_path>` is the directory path where the images will be saved. 👉 ./molecule/test_data_image_folder 
+> A folder named `test_data_image_folder` contains `pred`, `ale`, and `epi` folders. \
+Three PNG/SVG images will be generated per molecule, including property prediction, aleatoric uncertainty, and epistemic uncertainty. \
+These PNG/SVG images will be classified into the folders they belong to. (e.g. aleatoric uncertainty with atomic aleatoric uncertainty image is in `ale` folder)
+* `--high_resolution` add this tag will generate images with svg format. Else, images with png format.
 
 ![image](https://github.com/chuiyang/atom-based_uncertainty_model/blob/main/images/image.jpeg)
 
