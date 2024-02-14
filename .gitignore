@@ -3,6 +3,9 @@
 
 .DS_Store
 *.pyc
+*.ipynb
+*.png
+*.svg
 
 !/images
 !*.py
