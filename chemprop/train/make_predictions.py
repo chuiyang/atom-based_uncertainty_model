@@ -29,7 +29,6 @@ def make_predictions(args: Namespace, smiles: List[str] = None) -> List[Optional
     scaler, features_scaler = load_scalers(args.checkpoint_paths[0])
     for i in range(len(args.checkpoint_paths)):
         scaler_i, feature_scaler_i = load_scalers(args.checkpoint_paths[i])
-        print(f'index: {i}, scaler: {scaler_i.means, scaler_i.stds}')
     train_args = load_args(args.checkpoint_paths[0])
 
     # Update args with training arguments
@@ -63,11 +62,12 @@ def make_predictions(args: Namespace, smiles: List[str] = None) -> List[Optional
     if train_args.features_scaling:
         test_data.normalize_features(features_scaler)
     # max atom size check
-    if args.pred_max_atom_size is not None:
+    if hasattr(args, 'pred_max_atom_size'):
         print(f'predict max heavy atom size: {args.pred_max_atom_size}')
         args.max_atom_size = args.pred_max_atom_size
     else:
-        print('args.pred_max_atom_size is None')
+        args.pred_max_atom_size = args.max_atom_size
+        print(f'args.pred_max_atom_size is {args.pred_max_atom_size}')
     # Predict with each model individually and sum predictions
     if args.dataset_type == 'multiclass':
         sum_preds = np.zeros((len(test_data), args.num_tasks, args.multiclass_num_classes))

@@ -2,7 +2,7 @@
 import os
 import logging
 
-from chemprop.parsing import parse_predict_args
+from chemprop.parsing import parse_draw_molecules_args
 from chemprop.train import make_predictions_atomicUnc_multiMol
 
 
@@ -20,7 +20,7 @@ def setup_logger(name, log_file, level=logging.INFO, format='%(asctime)s - %(nam
     return logger
 
 if __name__ == '__main__':
-    args = parse_predict_args()
+    args = parse_draw_molecules_args()
 
     log_file_path = os.path.join(args.draw_mols_dir, 'draw_molecules.log')
     logger = setup_logger('', log_file_path)

@@ -284,42 +284,6 @@ def update_checkpoint_args(args: Namespace):
     if args.ensemble_size == 0:
         raise ValueError(f'Failed to find any model checkpoints in directory "{args.checkpoint_dir}"')
 
-# ---- pred ----
-
-def modify_predict_args(args: Namespace):
-    """
-    Modifies and validates predicting args in place.
-
-    :param args: Arguments.
-    """
-    assert args.test_path
-    assert args.draw_mols_dir
-    assert args.checkpoint_dir is not None or args.checkpoint_path is not None or args.checkpoint_paths is not None
-
-    update_checkpoint_args(args)
-
-    args.cuda = not args.no_cuda and torch.cuda.is_available()
-    del args.no_cuda
-
-    # Create directory for preds path
-    makedirs(args.draw_mols_dir, isfile=True)
-    
-    # predict covariance matrix of a molecule.
-    if args.covariance_matrix_pred:
-        assert args.covariance_matrix_save_path is not None
-        print(f'covariance_matrix_save_path: {args.covariance_matrix_save_path}')
-        print(f'make directory: {"/".join(args.covariance_matrix_save_path.split("/")[:-1])}')
-        makedirs('/'.join(args.covariance_matrix_save_path.split('/')[:-1]), isfile=False)
-
-
-def parse_predict_args() -> Namespace:
-    parser = ArgumentParser()
-    add_predict_args(parser)
-    args = parser.parse_args()
-    modify_predict_args(args)
-
-    return args
-
 # ---- train ----
 
 def modify_train_args(args: Namespace):
@@ -421,5 +385,65 @@ def parse_train_args() -> Namespace:
     add_train_args(parser)
     args = parser.parse_args()
     modify_train_args(args)
+
+    return args
+
+
+# ---- pred ----
+
+def modify_predict_args(args: Namespace):
+    """
+    Modifies and validates predicting args in place.
+
+    :param args: Arguments.
+    """
+    assert args.test_path
+    assert args.preds_path
+    assert args.checkpoint_dir is not None or args.checkpoint_path is not None or args.checkpoint_paths is not None
+
+    update_checkpoint_args(args)
+
+    args.cuda = not args.no_cuda and torch.cuda.is_available()
+    del args.no_cuda
+
+    # Create directory for preds path
+    makedirs(args.preds_path, isfile=True)
+    
+    # predict covariance matrix of a molecule.
+    if args.covariance_matrix_pred:
+        assert args.covariance_matrix_save_path is not None
+        print(f'covariance_matrix_save_path: {args.covariance_matrix_save_path}')
+        print(f'make directory: {"/".join(args.covariance_matrix_save_path.split("/")[:-1])}')
+        makedirs('/'.join(args.covariance_matrix_save_path.split('/')[:-1]), isfile=False)
+
+
+def parse_predict_args() -> Namespace:
+    parser = ArgumentParser()
+    add_predict_args(parser)
+    args = parser.parse_args()
+    modify_predict_args(args)
+
+    return args
+
+# ---- draw ----
+
+def modify_draw_molecules_args(args: Namespace):
+    assert args.test_path
+    assert args.draw_mols_dir is not None or args.preds_path is not None
+    assert args.checkpoint_dir is not None or args.checkpoint_path is not None or args.checkpoint_paths is not None
+
+    update_checkpoint_args(args)
+
+    args.cuda = not args.no_cuda and torch.cuda.is_available()
+    del args.no_cuda
+
+    # Create directory for preds path
+    makedirs(args.draw_mols_dir)
+
+def parse_draw_molecules_args() -> Namespace:
+    parser = ArgumentParser()
+    add_predict_args(parser)
+    args = parser.parse_args()
+    modify_draw_molecules_args(args)
 
     return args

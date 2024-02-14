@@ -82,12 +82,12 @@ def load_checkpoint(path: str,
 
     if current_args is not None:  
         try: 
-            if current_args.pred_max_atom_size is not None:  # prediction process
-                debug(f'generalization prediction, original max_atom_size: {args.max_atom_size}, now predicting max_atom_size = {current_args.pred_max_atom_size} molecule.')
-                args = current_args
-                args.max_atom_size = current_args.pred_max_atom_size
+            if current_args.pred_max_atom_size is not None and current_args.pred_max_atom_size != args.max_atom_size:  # prediction process
+                debug(f'{path}: generalization prediction, original max_atom_size: {args.max_atom_size}, now predicting max_atom_size = {current_args.pred_max_atom_size} molecule.')
             else:
-                debug(f'prediction process, but without generalization, use the original max_atom_size: {args.max_atom_size}')
+                debug(f'{path}: prediction process, but without generalization, use the original max_atom_size: {args.max_atom_size}')
+            args = current_args
+            args.max_atom_size = current_args.pred_max_atom_size
         except:
             if current_args.max_atom_size is not None:
                 debug(f'transfer learning: change max_atom_size from {args.max_atom_size} to {current_args.max_atom_size}')

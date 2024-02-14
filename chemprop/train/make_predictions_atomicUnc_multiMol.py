@@ -15,17 +15,25 @@ from chemprop.utils import load_args, load_checkpoint, load_scalers
 from chemprop.atom_plot.molecule_drawer import MoleculeDrawer
 
 
-def draw_and_save_molecule(i, smiles_i, mol_unc_i, atomic_unc_i, unc_t, args, svg=False):
+def draw_and_save_molecule(i, smiles_i, mol_unc_i, atomic_unc_i, unc_t, args, svg=False, logger=None):
     smiles = smiles_i
     mol_unc = float(mol_unc_i)
     atom_uncs = [round(a, 2) for a in atomic_unc_i.astype(float)]
-    pic_data = MoleculeDrawer.draw_molecule_with_atom_notes(smiles=smiles, mol_note=mol_unc, atom_notes=atom_uncs, unc_type=unc_t, svg=svg)
+    try:
+        pic_data = MoleculeDrawer.draw_molecule_with_atom_notes(smiles=smiles, mol_note=mol_unc, atom_notes=atom_uncs, unc_type=unc_t, svg=svg)
+    except:
+        if logger:
+            logger.error(f'Cannot draw molecule {i}: {smiles_i}')
+        else:
+            print(f'[Error] Cannot draw molecule {i}: {smiles_i}')
+        return False
     if svg:
         with open(os.path.join(args.unc_type_png_path, f'{i}_{unc_t}.svg'), 'w') as f:
             f.write(pic_data)
     else:
         with open(os.path.join(args.unc_type_png_path, f'{i}_{unc_t}.png'), 'wb') as f:
             f.write(pic_data)
+    return True
     
 def make_predictions_atomicUnc_multiMol(args: Namespace, smiles: List[str] = None, logger: logging.Logger = None) -> None:
     """
@@ -154,5 +162,5 @@ def make_predictions_atomicUnc_multiMol(args: Namespace, smiles: List[str] = Non
             mol_unc = avg_preds
             atomic_unc = avg_test_atomic_preds
         for i, (smiles_i, mol_unc_i, atomic_unc_i) in enumerate(zip(test_smiles, mol_unc, atomic_unc)):
-            draw_and_save_molecule(i, smiles_i, mol_unc_i, atomic_unc_i, unc_t, args, svg=high_resolution)
+            draw_and_save_molecule(i, smiles_i, mol_unc_i, atomic_unc_i, unc_t, args, svg=high_resolution, logger=logger)
     return avg_preds

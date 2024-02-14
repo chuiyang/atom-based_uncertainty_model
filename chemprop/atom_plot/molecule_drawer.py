@@ -92,6 +92,8 @@ class MoleculeDrawer():
       cmap = LinearSegmentedColormap.from_list('self_define', colors, N=100)
       mol = Chem.MolFromSmiles(smiles)
 
+      atom_notes = list(atom_notes[:mol.GetNumHeavyAtoms()])
+
       if svg:
           drawer = rdMolDraw2D.MolDraw2DSVG(520, 550)  # Set the size of the drawing
       else:
@@ -102,7 +104,7 @@ class MoleculeDrawer():
           atom.SetProp('atomNote', str(note))
           atom.SetProp('atomLabel', atom.GetSymbol()) # forces all atoms, including carbons, to be labeled with their element symbols
 
-      _, max_atom_pos_y = MoleculeDrawer._get_similarity_map_from_weights(mol, list(atom_notes), colorMap=cmap, contourLines=2, draw2d=drawer, alpha=3, sigma=0.25, unc_type=unc_type) #0.34
+      _, max_atom_pos_y = MoleculeDrawer._get_similarity_map_from_weights(mol, atom_notes, colorMap=cmap, contourLines=2, draw2d=drawer, alpha=3, sigma=0.25, unc_type=unc_type) #0.34
       max_atom_pos_y = max_atom_pos_y*1.7
 
       if unc_type == 'pred':
