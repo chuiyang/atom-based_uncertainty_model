@@ -157,7 +157,7 @@ def add_train_args(parser: ArgumentParser):
                         help='Write down the given true value in second column')
 
     # Training arguments
-    parser.add_argument('--epochs', type=int, default=150,
+    parser.add_argument('--epochs', type=int, default=10,
                         help='Number of epochs to run')
     parser.add_argument('--batch_size', type=int, default=50,
                         help='Batch size')
@@ -223,11 +223,13 @@ def add_train_args(parser: ArgumentParser):
     parser.add_argument('--covariance_matrix_save_path', default=None,
                         help='Path to save covariance matrix e.g. ./folder1/folder2/covar.txt')
 
-    # active learning and transfer learning
-    parser.add_argument('--active_uncertainty', default=None,
-                        help='type of uncertainty to be used in active learning.')
+    # transfer learning
     parser.add_argument('--transfer_learning_freeze_GCNN', action='store_true', default=False,
                         help='freeze graph convolutional layer while running transfer learning process.')
+    
+    # active learning
+    parser.add_argument('--active_uncertainty', default=None,
+                        help='type of uncertainty to be used in active learning.')
     parser.add_argument('--atomic_unc', action='store_true', default=False,
                         help='use atomic uncertainty as criteria in active learning.')
 
@@ -245,7 +247,7 @@ def add_train_args(parser: ArgumentParser):
                         help='aggregation scheme for atomic vectors into molecular vectors.(mean/sum/norm)')
     parser.add_argument('--aggregation_norm', type=int, default=100,
                         help='for norm aggregation, number by which to divide summed up atomic features.')
-    parser.add_argument('--twoUnitOutput', action='store_true', default=False,
+    parser.add_argument('--two_unit_output', action='store_true', default=False,
                         help='whether outputs of mean and variance share the same layer with 2 units.')
     parser.add_argument('--y_scaling', action='store_true', default=True,
                         help='divide y value with standard deviation of training data y.')

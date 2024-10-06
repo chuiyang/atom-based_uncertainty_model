@@ -13,7 +13,7 @@ class MoleculeModel(nn.Module):
     """A MoleculeModel is a model which contains a message passing network following by feed-forward layers."""
 
     def __init__(self, classification: bool, multiclass: bool, aleatoric: bool, epistemic: str, 
-                 fp_method:str, atomic_unc: bool, twoUnitOutput:bool, intensive_property:bool,
+                 fp_method:str, atomic_unc: bool, two_unit_output:bool, intensive_property:bool,
                  covariance_matrix_pred:bool, covariance_matrix_save_path: str = None):
         """
         Initializes the MoleculeModel.
@@ -35,7 +35,7 @@ class MoleculeModel(nn.Module):
         self.mc_dropout = self.epistemic == 'mc_dropout' 
         self.fp_method = fp_method
         self.atomic_unc = atomic_unc
-        self.twoUnitOutput = twoUnitOutput
+        self.two_unit_output = two_unit_output
         self.intensive_property = intensive_property
         self.covariance_matrix_pred = covariance_matrix_pred
         self.covariance_matrix_save_path = covariance_matrix_save_path
@@ -151,7 +151,7 @@ class MoleculeModel(nn.Module):
             # Create FFN model
             self._ffn = nn.Sequential(*ffn_mean_func)
             if self.aleatoric:
-                if self.twoUnitOutput:
+                if self.two_unit_output:
                     self.output_layer = TimeDistributed_wrapper(nn.Linear(last_linear_dim, args.output_size+1, bias=False))
                 else:
                     self.output_layer = TimeDistributed_wrapper(nn.Linear(last_linear_dim, args.output_size, bias=False))
@@ -240,7 +240,7 @@ class MoleculeModel(nn.Module):
                 hid_vec, corr_vec, asize_vec = self.encoder(*input)
 
                 hid_vec = self._ffn(hid_vec)
-                if self.twoUnitOutput:
+                if self.two_unit_output:
                     _output_vector = self.output_layer(hid_vec)
                     _output_atomic, _output_std = self.split_y_var(_output_vector)
                 else:
@@ -316,7 +316,7 @@ def build_model(args: Namespace, scaler=None) -> nn.Module:
     model = MoleculeModel(classification=args.dataset_type == 'classification', 
                           multiclass=args.dataset_type == 'multiclass', aleatoric=args.aleatoric, 
                           epistemic=args.epistemic, fp_method=args.fp_method, atomic_unc=args.atomic_unc, 
-                          twoUnitOutput=args.twoUnitOutput, intensive_property=args.intensive_property,
+                          two_unit_output=args.two_unit_output, intensive_property=args.intensive_property,
                           covariance_matrix_pred=args.covariance_matrix_pred,
                           covariance_matrix_save_path=args.covariance_matrix_save_path)
     if args.covariance_matrix_pred:
