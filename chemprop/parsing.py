@@ -64,6 +64,9 @@ def add_predict_args(parser: ArgumentParser):
     parser.add_argument('--high_resolution', action='store_true', default=False,
                         help='If true, save images in svg file (higher resolution comparing to png file).')
 
+    parser.add_argument('--pred_max_atom_size', type=int, default=9,
+                        help='set the maximum atom size in testing data if the maximum atom size is larger then training data')
+
 def add_train_args(parser: ArgumentParser):
     """
     Adds training arguments to an ArgumentParser.

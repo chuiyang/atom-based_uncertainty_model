@@ -1,12 +1,15 @@
-/data
-/model
-
 .DS_Store
 *.pyc
 *.ipynb
 *.png
 *.svg
+*.yml
 
 !/images
 !*.py
 !.gitignore
+
+/data
+/model
+/saved
+/dev_files

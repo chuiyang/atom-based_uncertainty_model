@@ -54,8 +54,8 @@ python train.py \
 e.g.
 | smiles  | [property name]  |
 | :---:   | :---: |
-| COCC(=O)N(C)CC(=O)NCC1(Nc2nccn3nnnc23)CC1 | -1.315   | 
-| CC1(C)CN(C(=O)Nc2cc3ccccc3nn2)C[C@@]2(CCOC2)O1 | 2.432   | 
+| c1ccccc1 | -1.31   | 
+| CCCO | 2.43   | 
 | ... | ... |
 
 * `<save_dir_path>` is the path to save the checkpoints. e.g., 👉 ./result/folder1
@@ -70,11 +70,14 @@ python train.py \
 --save_dir <save_dir_path> \
 --dataset_type regression \
 --fp_method molecular \
+--aleatoric \
+--metric heteroscedastic \
+```
+[Below is optional for molecule-based uncertainty model]
+```bash
 --epochs 150 \
 --no_features_scaling \
 --seed 20 \
---aleatoric \
---metric heteroscedastic \
 --aggregation sum \
 --y_scaling \
 --batch_size 50 \
@@ -105,6 +108,7 @@ python predict.py \
 * `<test_path>` is the CSV file path to evaluate. e.g., 👉 ./data/test_data.csv
 * `<model_dir_path>` is the checkpoint directory path where the model is saved. It should be same as the `<save_dir_path>` when you train the model. e.g., 👉 ./result/folder1
 * `<pred_path>` is the CSV file path to save the output file after predicting the `<test_path>`e.g., 👉 ./data/test_data_pred.csv
+* Note: if the maximum heavy atom size in the test_path is larger then training data in checkpoint_dir, add `--pred_max_atom_size <size>` tag (atom-based uncertainty model only, to be fixed).
 
 ### 2. Draw Molecular Images
 with atomic information \
